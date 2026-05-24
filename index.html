@@ -22,6 +22,8 @@
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --border: rgba(0, 240, 255, 0.2);
+            --status-green: #22c55e;
+            --status-red: #ef4444;
         }
 
         * {
@@ -60,6 +62,95 @@
             background: var(--cyan-glow);
         }
 
+        /* ========== STATUS WIDGET ========== */
+        .status-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .status-widget:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.15);
+            border-color: var(--cyan-glow);
+        }
+
+        .status-time {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .status-divider {
+            width: 1px;
+            height: 16px;
+            background: var(--border);
+        }
+
+        .status-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .status-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .status-message {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--status-green);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--status-green);
+            box-shadow: 0 0 8px var(--status-green);
+            animation: pulse-dot 2s infinite;
+        }
+
+        .status-message.offline {
+            color: var(--status-red);
+        }
+
+        .status-message.offline .status-dot {
+            background-color: var(--status-red);
+            box-shadow: 0 0 8px var(--status-red);
+            animation: none;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ========== GLITCH ========== */
         .glitch {
             position: relative;
             color: var(--cyan-glow);
@@ -1338,6 +1429,23 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Mobile Status Widget */
+            .status-widget {
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 12px;
+                width: calc(100% - 30px);
+                justify-content: space-between;
+            }
+            
+            .status-time {
+                font-size: 0.9rem;
+            }
+
+            .status-divider {
+                display: none;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1384,7 +1492,7 @@
     <!-- Loader -->
     <div class="loader">
         <div class="loader-content">
-            <div class="glitch" data-text="PAVLE ĆIROVIĆ">PAVLE ĆIROVIĆ</div>
+            <div class="glitch" data-text="vy9paa">vy9paa</div>
             <div class="loader-bar">
                 <div class="loader-progress"></div>
             </div>
@@ -1746,7 +1854,6 @@
             </p>
 
             <div class="contact-methods">
-                <!-- ZAMENI BROJ -->
                 <a href="https://wa.me/381645053533" target="_blank" rel="noopener" class="contact-method">
                     <div class="contact-method-icon whatsapp">
                         <i class="fa-brands fa-whatsapp"></i>
@@ -1757,7 +1864,6 @@
                     </div>
                 </a>
 
-                <!-- ZAMENI BROJ -->
                 <a href="viber://chat?number=%2B381645053533" class="contact-method">
                     <div class="contact-method-icon viber">
                         <i class="fa-brands fa-viber"></i>
@@ -1780,7 +1886,6 @@
             </div>
 
             <div class="social-links">
-                <!-- ZAMENI LINKOVE SVOJIM -->
                 <a href="https://instagram.com/pavlecirovicc" class="social-link" title="Instagram" target="_blank" rel="noopener">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
@@ -1797,7 +1902,6 @@
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
 
-                <!-- ZAMENI BROJ -->
                 <a href="https://wa.me/381645053533" class="social-link" title="WhatsApp" target="_blank" rel="noopener">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
@@ -1813,6 +1917,19 @@
     <footer>
         <p>© vy9paa.editing</p>
     </footer>
+
+    <!-- STATUS WIDGET HTML -->
+    <div class="status-widget">
+        <div class="status-time" id="clock">00:00:00</div>
+        <div class="status-divider"></div>
+        <div class="status-info">
+            <div class="status-label">Central European Time</div>
+            <div class="status-message" id="status-msg">
+                <span class="status-dot"></span>
+                <span id="status-text">Online — Replies instantly ⚡</span>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Initialize Lucide Icons
@@ -1834,6 +1951,47 @@
                 }
             }, 2000);
         });
+
+        // ========== STATUS WIDGET LOGIC ==========
+        function updateStatus() {
+            const now = new Date();
+            
+            // 1. Update Time (HH:MM:SS) - Belgrade timezone
+            const timeString = now.toLocaleTimeString('sr-RS', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false,
+                timeZone: 'Europe/Belgrade'
+            });
+            document.getElementById('clock').textContent = timeString;
+
+            // 2. Get current hour in Belgrade timezone
+            const belgradeHour = parseInt(now.toLocaleString('en-US', { 
+                hour: 'numeric', 
+                hour12: false, 
+                timeZone: 'Europe/Belgrade' 
+            }));
+
+            const statusMsg = document.getElementById('status-msg');
+            const statusText = document.getElementById('status-text');
+
+            // Active hours: 08:00 - 23:00, Sleep: 23:00 - 08:00
+            if (belgradeHour >= 8 && belgradeHour < 23) {
+                // Awake — Online
+                statusMsg.classList.remove('offline');
+                statusText.textContent = "Online — Replies instantly ⚡";
+            } else {
+                // Sleeping — Night mode
+                statusMsg.classList.add('offline');
+                statusText.textContent = "Sleeping — Replies tomorrow 🌙";
+            }
+        }
+
+        // Run immediately then every second
+        updateStatus();
+        setInterval(updateStatus, 1000);
+        // ==========================================
 
         // PORTFOLIO VIDEO LOGIKA
         const portfolioItems = document.querySelectorAll('.portfolio-item');
