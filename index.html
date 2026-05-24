@@ -62,6 +62,47 @@
             background: var(--cyan-glow);
         }
 
+        /* ========== LANGUAGE TOGGLE ========== */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-toggle:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-btn.active {
+            background: var(--cyan-glow);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .lang-btn:not(.active):hover {
+            color: var(--text-primary);
+        }
+
         /* ========== STATUS WIDGET ========== */
         .status-widget {
             position: fixed;
@@ -256,6 +297,12 @@
         .logo i {
             width: clamp(1.2rem, 2vw, 1.5rem);
             height: clamp(1.2rem, 2vw, 1.5rem);
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: clamp(1.2rem, 3vw, 2.5rem);
         }
 
         .nav-links {
@@ -1446,6 +1493,15 @@
             .status-divider {
                 display: none;
             }
+
+            .nav-center {
+                gap: 0.8rem;
+            }
+
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1510,13 +1566,19 @@
             <i data-lucide="film"></i>
             PAVLE ĆIROVIĆ
         </a>
-        <ul class="nav-links">
-            <li><a href="#pocetna">Početna</a></li>
-            <li><a href="#usluge">Usluge</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#omeni">O Meni</a></li>
-        </ul>
-        <a href="#kontakt" class="cta-nav">Započni Projekat</a>
+        <div class="nav-center">
+            <ul class="nav-links">
+                <li><a href="#pocetna" data-i18n="nav.home">Početna</a></li>
+                <li><a href="#usluge" data-i18n="nav.services">Usluge</a></li>
+                <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="#omeni" data-i18n="nav.about">O Meni</a></li>
+            </ul>
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="sr">SR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <a href="#kontakt" class="cta-nav" data-i18n="nav.cta">Započni Projekat</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -1524,22 +1586,22 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>
-                    <span class="glitch" data-text="vy9paa.editing">vy9paa.editing</span>
-                    VIDEO EDITOR
+                     <span class="glitch" data-text="vy9paa.editing">vy9paa.editing</span>
+                    <strong style="color: var(--cyan-glow);">VIDEO EDITOR</strong>
                     <span>Premiere Pro & After Effects Specijalista</span>
                 </h1>
-                <p class="hero-subtitle">
+                <p class="hero-subtitle" data-i18n="hero.description">
                     Transformišem sirovi snimak u zarazni viralni sadržaj koji stopira skrolovanje.
                     Specijalizovan za Reels, Shorts i TikTok za kreatore i coacheve.
                 </p>
                 <div class="hero-buttons">
                     <a href="#portfolio" class="btn-primary">
                         <i data-lucide="play"></i>
-                        Pogledaj Radove
+                        <span data-i18n="hero.cta1">Pogledaj Radove</span>
                     </a>
                     <a href="#kontakt" class="btn-secondary">
                         <i data-lucide="message-circle"></i>
-                        Kontakt
+                        <span data-i18n="hero.cta2">Kontakt</span>
                     </a>
                 </div>
             </div>
@@ -1551,23 +1613,23 @@
 
                     <div class="showcase-pill pill-1">
                         <span class="dot"></span>
-                        Aktivna edit sesija
+                        <span data-i18n="hero.pill1">Aktivna edit sesija</span>
                     </div>
 
                     <div class="showcase-pill pill-2">
-                        ⚡ Jak hook u prve 3 sekunde
+                        ⚡ <span data-i18n="hero.pill2">Jak hook u prve 3 sekunde</span>
                     </div>
 
                     <div class="metric-card metric-1">
-                        <div class="metric-label">FOKUS MONTAŽE</div>
-                        <div class="metric-value">Zadržavanje pažnje</div>
-                        <div class="metric-note">Kratki rezovi, zumovi i dinamičan tempo</div>
+                        <div class="metric-label" data-i18n="hero.metric1.label">FOKUS MONTAŽE</div>
+                        <div class="metric-value" data-i18n="hero.metric1.value">Zadržavanje pažnje</div>
+                        <div class="metric-note" data-i18n="hero.metric1.note">Kratki rezovi, zumovi i dinamičan tempo</div>
                     </div>
 
                     <div class="metric-card metric-2">
-                        <div class="metric-label">ISPORUKA</div>
+                        <div class="metric-label" data-i18n="hero.metric2.label">ISPORUKA</div>
                         <div class="metric-value">24–48h</div>
-                        <div class="metric-note">Brza isporuka + jasna komunikacija</div>
+                        <div class="metric-note" data-i18n="hero.metric2.note">Brza isporuka + jasna komunikacija</div>
                     </div>
 
                     <div class="phone-mockup">
@@ -1578,16 +1640,16 @@
                             </div>
 
                             <div class="screen-content">
-                                <div class="screen-kicker">SHORT FORM EDIT</div>
-                                <h3 class="screen-title">Zaustavi skroll. Zadrži pažnju.</h3>
-                                <p class="screen-sub">
+                                <div class="screen-kicker" data-i18n="hero.kicker">SHORT FORM EDIT</div>
+                                <h3 class="screen-title" data-i18n="hero.screen.title">Zaustavi skroll. Zadrži pažnju.</h3>
+                                <p class="screen-sub" data-i18n="hero.screen.sub">
                                     Hook, titlovi i motion detalji koji drže pogled do kraja.
                                 </p>
 
                                 <div class="caption-stack">
-                                    <div class="caption-line accent">Prve 3 sekunde odlučuju sve.</div>
-                                    <div class="caption-line">Bold titlovi + emphasis reči</div>
-                                    <div class="caption-line">Sound design + čiste tranzicije</div>
+                                    <div class="caption-line accent" data-i18n="hero.caption1">Prve 3 sekunde odlučuju sve.</div>
+                                    <div class="caption-line" data-i18n="hero.caption2">Bold titlovi + emphasis reči</div>
+                                    <div class="caption-line" data-i18n="hero.caption3">Sound design + čiste tranzicije</div>
                                 </div>
                             </div>
 
@@ -1609,9 +1671,9 @@
     <!-- Services Section -->
     <section class="services" id="usluge">
         <div class="section-header">
-            <span class="section-tag">Šta Radim?</span>
-            <h2 class="section-title">Usluge Video Produkcije</h2>
-            <p class="section-subtitle">
+            <span class="section-tag" data-i18n="services.tag">Šta Radim?</span>
+            <h2 class="section-title" data-i18n="services.title">Usluge Video Produkcije</h2>
+            <p class="section-subtitle" data-i18n="services.subtitle">
                 Specijalizovane usluge montaže fokusirane na maksimalan engagement i zadržavanje pažnje publike
             </p>
         </div>
@@ -1621,8 +1683,8 @@
                 <div class="service-icon">
                     <i data-lucide="smartphone"></i>
                 </div>
-                <h3>Short Form Video</h3>
-                <p>Viralni Reels, TikTok i YouTube Shorts sa dinamičkim rezovima, subtitrima i efektima koji hvataju pažnju u prvih 3 sekunde.</p>
+                <h3 data-i18n="services.card1.title">Short Form Video</h3>
+                <p data-i18n="services.card1.desc">Viralni Reels, TikTok i YouTube Shorts sa dinamičkim rezovima, subtitrima i efektima koji hvataju pažnju u prvih 3 sekunde.</p>
                 <div class="software-tags">
                     <span class="tag">Premiere Pro</span>
                     <span class="tag">After Effects</span>
@@ -1633,8 +1695,8 @@
                 <div class="service-icon">
                     <i data-lucide="trending-up"></i>
                 </div>
-                <h3>Content za Kreatore</h3>
-                <p>Montaža podcasta, izdvajanje klipova, dodavanje animiranih grafika i vizuala koji pojačavaju lični brend.</p>
+                <h3 data-i18n="services.card2.title">Content za Kreatore</h3>
+                <p data-i18n="services.card2.desc">Montaža podcasta, izdvajanje klipova, dodavanje animiranih grafika i vizuala koji pojačavaju lični brend.</p>
                 <div class="software-tags">
                     <span class="tag">Motion Graphics</span>
                     <span class="tag">Color Grading</span>
@@ -1645,8 +1707,8 @@
                 <div class="service-icon">
                     <i data-lucide="target"></i>
                 </div>
-                <h3>Video za Coacheve</h3>
-                <p>Profesionalna obrada edukativnog sadržaja, kurs video lekcija i promotivnih spotova za online biznise.</p>
+                <h3 data-i18n="services.card3.title">Video za Coacheve</h3>
+                <p data-i18n="services.card3.desc">Profesionalna obrada edukativnog sadržaja, kurs video lekcija i promotivnih spotova za online biznise.</p>
                 <div class="software-tags">
                     <span class="tag">Sound Design</span>
                     <span class="tag">VFX</span>
@@ -1658,9 +1720,9 @@
     <!-- Portfolio Section -->
     <section class="portfolio" id="portfolio">
         <div class="section-header">
-            <span class="section-tag">Portfolio</span>
-            <h2 class="section-title">Izdvojeni Radovi</h2>
-            <p class="section-subtitle">
+            <span class="section-tag" data-i18n="portfolio.tag">Portfolio</span>
+            <h2 class="section-title" data-i18n="portfolio.title">Izdvojeni Radovi</h2>
+            <p class="section-subtitle" data-i18n="portfolio.subtitle">
                 Pregled najboljih projekata iz različitih niša
             </p>
         </div>
@@ -1684,8 +1746,8 @@
                         <button class="close-video" title="Zatvori video">×</button>
                     </div>
                     <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Projekat 1</h3>
-                        <p class="portfolio-meta">Tap to play</p>
+                        <h3 class="portfolio-title" data-i18n="portfolio.project">Projekat 1</h3>
+                        <p class="portfolio-meta" data-i18n="portfolio.tap">Tap to play</p>
                     </div>
                 </div>
             </div>
@@ -1822,13 +1884,13 @@
                 </div>
             </div>
             <div class="about-text">
-                <span class="section-tag">O Meni</span>
-                <h2>Video Editor sa Fokusom na Rezultate</h2>
-                <p>
+                <span class="section-tag" data-i18n="about.tag">O Meni</span>
+                <h2 data-i18n="about.title">Video Editor sa Fokusom na Rezultate</h2>
+                <p data-i18n="about.p1">
                     Zovem se Pavle i specijalizovan sam za editovanje short form videa koji se 
                     <strong style="color: var(--cyan-glow);">zarazno šire</strong> po društvenim mrežama.
                 </p>
-                <p>
+                <p data-i18n="about.p2">
                     Radim sa kreatorima, coach-evima i brendovima koji žele da podignu svoj 
                     sadržaj na viši nivo. Kombinujem tehničku preciznost Premiere Pro-a 
                     sa kreativnim mogućnostima After Effects-a da bih stvarao video 
@@ -1836,9 +1898,9 @@
                     <strong style="color: var(--cyan-glow);">konvertuje gledaoce u pratioce i potencijalne klijente</strong>.
                 </p>
                 <ul class="skills-list">
-                    <li><i data-lucide="check-circle"></i> Brza isporuka (24-48h)</li>
-                    <li><i data-lucide="check-circle"></i> Praćenje trendova i algoritama</li>
-                    <li><i data-lucide="check-circle"></i> Sinhronizacija sa brend identitetom</li>
+                    <li><i data-lucide="check-circle"></i> <span data-i18n="about.skill1">Brza isporuka (24-48h)</span></li>
+                    <li><i data-lucide="check-circle"></i> <span data-i18n="about.skill2">Praćenje trendova i algoritama</span></li>
+                    <li><i data-lucide="check-circle"></i> <span data-i18n="about.skill3">Sinhronizacija sa brend identitetom</span></li>
                 </ul>
             </div>
         </div>
@@ -1847,9 +1909,9 @@
     <!-- Contact Section -->
     <section class="contact" id="kontakt">
         <div class="contact-content">
-            <span class="section-tag">Kontakt</span>
-            <h2 class="glitch" data-text="Javi mi se">Javi mi se</h2>
-            <p class="contact-text">
+            <span class="section-tag" data-i18n="contact.tag">Kontakt</span>
+            <h2 class="glitch" data-text="Javi mi se" data-i18n="contact.title">Javi mi se</h2>
+            <p class="contact-text" data-i18n="contact.description">
                 Za saradnju me kontaktiraj direktno putem WhatsApp-a, Vibera ili email-a.
             </p>
 
@@ -1923,15 +1985,215 @@
         <div class="status-time" id="clock">00:00:00</div>
         <div class="status-divider"></div>
         <div class="status-info">
-            <div class="status-label">Central European Time</div>
+            <div class="status-label" data-i18n="status.label">Central European Time</div>
             <div class="status-message" id="status-msg">
                 <span class="status-dot"></span>
-                <span id="status-text">Online — Replies instantly ⚡</span>
+                <span id="status-text" data-i18n="status.online">Online — Replies instantly ⚡</span>
             </div>
         </div>
     </div>
 
     <script>
+        // ========== TRANSLATIONS OBJECT ==========
+        const translations = {
+            sr: {
+                // Navigation
+                "nav.home": "Početna",
+                "nav.services": "Usluge",
+                "nav.portfolio": "Portfolio",
+                "nav.about": "O Meni",
+                "nav.cta": "Započni Projekat",
+                
+                // Hero
+                "hero.title": "VIDEO EDITOR",
+                "hero.subtitle": "Premiere Pro & After Effects Specijalista",
+                "hero.description": "Transformišem sirovi snimak u zarazni viralni sadržaj koji stopira skrolovanje. Specijalizovan za Reels, Shorts i TikTok za kreatore i coacheve.",
+                "hero.cta1": "Pogledaj Radove",
+                "hero.cta2": "Kontakt",
+                "hero.pill1": "Aktivna edit sesija",
+                "hero.pill2": "Jak hook u prve 3 sekunde",
+                "hero.metric1.label": "FOKUS MONTAŽE",
+                "hero.metric1.value": "Zadržavanje pažnje",
+                "hero.metric1.note": "Kratki rezovi, zumovi i dinamičan tempo",
+                "hero.metric2.label": "ISPORUKA",
+                "hero.metric2.note": "Brza isporuka + jasna komunikacija",
+                "hero.kicker": "SHORT FORM EDIT",
+                "hero.screen.title": "Zaustavi skroll. Zadrži pažnju.",
+                "hero.screen.sub": "Hook, titlovi i motion detalji koji drže pogled do kraja.",
+                "hero.caption1": "Prve 3 sekunde odlučuju sve.",
+                "hero.caption2": "Bold titlovi + emphasis reči",
+                "hero.caption3": "Sound design + čiste tranzicije",
+                
+                // Services
+                "services.tag": "Šta Radim?",
+                "services.title": "Usluge Video Produkcije",
+                "services.subtitle": "Specijalizovane usluge montaže fokusirane na maksimalan engagement i zadržavanje pažnje publike",
+                "services.card1.title": "Short Form Video",
+                "services.card1.desc": "Viralni Reels, TikTok i YouTube Shorts sa dinamičkim rezovima, subtitrima i efektima koji hvataju pažnju u prvih 3 sekunde.",
+                "services.card2.title": "Content za Kreatore",
+                "services.card2.desc": "Montaža podcasta, izdvajanje klipova, dodavanje animiranih grafika i vizuala koji pojačavaju lični brend.",
+                "services.card3.title": "Video za Coacheve",
+                "services.card3.desc": "Profesionalna obrada edukativnog sadržaja, kurs video lekcija i promotivnih spotova za online biznise.",
+                
+                // Portfolio
+                "portfolio.tag": "Portfolio",
+                "portfolio.title": "Izdvojeni Radovi",
+                "portfolio.subtitle": "Pregled najboljih projekata iz različitih niša",
+                "portfolio.project": "Projekat",
+                "portfolio.tap": "Tap to play",
+                
+                // About
+                "about.tag": "O Meni",
+                "about.title": "Video Editor sa Fokusom na Rezultate",
+                "about.p1": "Zovem se Pavle i specijalizovan sam za editovanje short form videa koji se <strong style='color: var(--cyan-glow);'>zarazno šire</strong> po društvenim mrežama.",
+                "about.p2": "Radim sa kreatorima, coach-evima i brendovima koji žele da podignu svoj sadržaj na viši nivo. Kombinujem tehničku preciznost Premiere Pro-a sa kreativnim mogućnostima After Effects-a da bih stvarao video sadržaj koji ne samo da izgleda profesionalno, već i <strong style='color: var(--cyan-glow);'>konvertuje gledaoce u pratioce i potencijalne klijente</strong>.",
+                "about.skill1": "Brza isporuka (24-48h)",
+                "about.skill2": "Praćenje trendova i algoritama",
+                "about.skill3": "Sinhronizacija sa brend identitetom",
+                
+                // Contact
+                "contact.tag": "Kontakt",
+                "contact.title": "Javi mi se",
+                "contact.description": "Za saradnju me kontaktiraj direktno putem WhatsApp-a, Vibera ili email-a.",
+                
+                // Status
+                "status.label": "Central European Time",
+                "status.online": "Online — Replies instantly ⚡",
+                "status.offline": "Sleeping — Replies tomorrow 🌙",
+                "status.offlineEN": "Spava — Odgovoriće sutra 🌙"
+            },
+            en: {
+                // Navigation
+                "nav.home": "Home",
+                "nav.services": "Services",
+                "nav.portfolio": "Portfolio",
+                "nav.about": "About",
+                "nav.cta": "Start a Project",
+                
+                // Hero
+                "hero.title": "VIDEO EDITOR",
+                "hero.subtitle": "Premiere Pro & After Effects Specialist",
+                "hero.description": "I transform raw footage into addictive viral content that stops the scroll. Specialized in Reels, Shorts and TikTok for creators and coaches.",
+                "hero.cta1": "View My Work",
+                "hero.cta2": "Contact",
+                "hero.pill1": "Active editing session",
+                "hero.pill2": "Strong hook in first 3 seconds",
+                "hero.metric1.label": "EDITING FOCUS",
+                "hero.metric1.value": "Attention Retention",
+                "hero.metric1.note": "Short cuts, zooms & dynamic tempo",
+                "hero.metric2.label": "DELIVERY",
+                "hero.metric2.note": "Fast delivery + clear communication",
+                "hero.kicker": "SHORT FORM EDIT",
+                "hero.screen.title": "Stop the scroll. Keep attention.",
+                "hero.screen.sub": "Hook, subtitles & motion details that keep viewers watching till the end.",
+                "hero.caption1": "The first 3 seconds decide everything.",
+                "hero.caption2": "Bold subtitles + word emphasis",
+                "hero.caption3": "Sound design + clean transitions",
+                
+                // Services
+                "services.tag": "What I Do?",
+                "services.title": "Video Production Services",
+                "services.subtitle": "Specialized editing services focused on maximum engagement and audience retention",
+                "services.card1.title": "Short Form Video",
+                "services.card1.desc": "Viral Reels, TikTok and YouTube Shorts with dynamic cuts, subtitles and effects that capture attention in the first 3 seconds.",
+                "services.card2.title": "Content for Creators",
+                "services.card2.desc": "Podcast editing, clip extraction, animated graphics and visuals that boost personal branding.",
+                "services.card3.title": "Video for Coaches",
+                "services.card3.desc": "Professional editing of educational content, course video lessons and promotional spots for online businesses.",
+                
+                // Portfolio
+                "portfolio.tag": "Portfolio",
+                "portfolio.title": "Featured Work",
+                "portfolio.subtitle": "A selection of best projects across different niches",
+                "portfolio.project": "Project",
+                "portfolio.tap": "Tap to play",
+                
+                // About
+                "about.tag": "About Me",
+                "about.title": "Video Editor Focused on Results",
+                "about.p1": "My name is Pavle and I specialize in editing short form videos that <strong style='color: var(--cyan-glow);'>go viral</strong> across social media.",
+                "about.p2": "I work with creators, coaches and brands who want to elevate their content to the next level. I combine technical precision of Premiere Pro with creative capabilities of After Effects to create video content that not only looks professional but also <strong style='color: var(--cyan-glow);'>converts viewers into followers and potential clients</strong>.",
+                "about.skill1": "Fast delivery (24-48h)",
+                "about.skill2": "Trends & algorithm tracking",
+                "about.skill3": "Brand identity synchronization",
+                
+                // Contact
+                "contact.tag": "Contact",
+                "contact.title": "Get in Touch",
+                "contact.description": "For collaboration, contact me directly via WhatsApp, Viber or email.",
+                
+                // Status
+                "status.label": "Central European Time",
+                "status.online": "Online — Replies instantly ⚡",
+                "status.offline": "Sleeping — Replies tomorrow 🌙",
+                "status.offlineEN": "Sleeping — Replies tomorrow 🌙"
+            }
+        };
+
+        // ========== LANGUAGE SWITCHER ==========
+        let currentLang = localStorage.getItem('portfolio-lang') || 'sr';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('portfolio-lang', lang);
+            document.documentElement.lang = lang;
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (key.includes('.p1') || key.includes('.p2') || key.includes('caption')) {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update portfolio project numbers
+            const projectNums = {sr: 'Projekat', en: 'Project'};
+            document.querySelectorAll('.portfolio-title').forEach((el, i) => {
+                el.textContent = `${projectNums[lang]} ${i + 1}`;
+            });
+
+            // Update close button titles
+            const closeTitles = {sr: 'Zatvori video', en: 'Close video'};
+            document.querySelectorAll('.close-video').forEach(el => {
+                el.title = closeTitles[lang];
+            });
+
+            // Update glitch text for contact
+            const contactTitle = document.querySelector('[data-i18n="contact.title"]');
+            if (contactTitle) {
+                contactTitle.setAttribute('data-text', translations[lang]['contact.title']);
+            }
+
+            // Update active button state
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Reinitialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Update status text based on current time and language
+            updateStatus();
+        }
+
+        // Initialize language toggle buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
+        });
+
+        // Initialize with saved language
+        setLanguage(currentLang);
+
+        // ========== REST OF YOUR EXISTING SCRIPTS ==========
+
         // Initialize Lucide Icons
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof lucide !== 'undefined') {
@@ -1980,11 +2242,11 @@
             if (belgradeHour >= 8 && belgradeHour < 23) {
                 // Awake — Online
                 statusMsg.classList.remove('offline');
-                statusText.textContent = "Online — Replies instantly ⚡";
+                statusText.textContent = translations[currentLang]['status.online'];
             } else {
                 // Sleeping — Night mode
                 statusMsg.classList.add('offline');
-                statusText.textContent = "Sleeping — Replies tomorrow 🌙";
+                statusText.textContent = translations[currentLang]['status.offline'];
             }
         }
 
