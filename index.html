@@ -257,6 +257,18 @@
         footer{padding:clamp(1.2rem,2vw,2rem) clamp(1rem,5vw,5%);text-align:center;border-top:1px solid var(--bd);color:var(--ts);font-size:clamp(.8rem,1.5vw,.9rem)}
         footer span{color:var(--cg)}
 
+        /* ===== FLOATING LANG SWITCHER ===== */
+        .lf{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:8000;display:flex;flex-direction:column;gap:0;border-radius:14px 0 0 14px;overflow:hidden;box-shadow:-4px 0 30px rgba(0,240,255,.15),0 8px 32px rgba(0,0,0,.5);border:1px solid var(--bd);border-right:none}
+        .lf button{width:48px;height:48px;background:rgba(8,8,12,.92);backdrop-filter:blur(16px);border:none;color:var(--ts);font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .3s;position:relative;display:flex;align-items:center;justify-content:center}
+        .lf button:first-child{border-bottom:1px solid var(--bd)}
+        .lf button::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cg);transform:scaleY(0);transition:transform .3s;box-shadow:0 0 8px var(--cg)}
+        .lf button.active{color:var(--cg);background:rgba(0,240,255,.08)}
+        .lf button.active::before{transform:scaleY(1)}
+        .lf button:hover:not(.active){color:#fff;background:rgba(0,240,255,.05)}
+        .lf .d{display:none}
+        @media(max-width:600px){.lf{top:auto;bottom:90px;border-radius:14px 0 0 14px}}
+        /* ===== END LANG SWITCHER ===== */
+
         @media(max-width:968px){.hero-content{grid-template-columns:1fr;text-align:center}.hero-visual{order:-1}.hero-subtitle{margin-left:auto;margin-right:auto}.phone-mockup{transform:scale(.9)}.showcase-pill,.metric-card{transform:scale(.85)}.about-content{grid-template-columns:1fr}.nl{display:none}.portfolio-grid{grid-template-columns:repeat(auto-fit,minmax(clamp(200px,70vw,280px),1fr))}}
         @media(max-width:600px){nav{padding:.8rem clamp(.8rem,3vw,1rem)}.hero{padding:4rem clamp(.8rem,3vw,1rem) clamp(1.5rem,3vw,2rem);margin-top:2.5rem}.hero-buttons{flex-direction:column;width:100%}.btn-primary,.btn-secondary{width:100%;justify-content:center}.showcase-pill,.metric-card{display:none}.portfolio-grid{grid-template-columns:repeat(auto-fit,minmax(clamp(160px,60vw,220px),1fr));gap:clamp(.8rem,2vw,1rem)}.services-grid{grid-template-columns:1fr}.sw{bottom:15px;right:15px;padding:8px 12px;width:calc(100% - 30px);justify-content:space-between}.sw .time{font-size:.9rem}.sw .div{display:none}.lf{top:auto;bottom:80px;right:15px}.cb-trigger{bottom:75px;left:15px;width:52px;height:52px}.cb-win{bottom:138px;left:15px;width:calc(100vw - 30px);max-width:380px;height:400px}}
         @media(max-width:400px){.logo{font-size:clamp(.9rem,2vw,1.2rem)}.hero-text h1{font-size:clamp(1.5rem,4vw,2rem)}.phone-mockup{transform:scale(.75);margin:-30px 0}.contact-method{flex-direction:column;align-items:flex-start;gap:1rem}.contact-method-info{width:100%}.lp-btns{grid-template-columns:1fr}}
@@ -432,7 +444,7 @@ document.addEventListener('mousemove',function(e){var mx=e.clientX/innerWidth-.5
 </script>
 <div id="lang-toast" class="lang-toast">
     <span class="toast-icon">🌍</span>
-    <span class="toast-text">Izaberite jezik u donjem levom uglu.<br><small>Choose your language in the bottom left.</small></span>
+    <span class="toast-text">Izaberite jezik.<br><small>Choose your language.</small></span>
     <button id="close-toast" aria-label="Close">&times;</button>
 </div>
 </body>
