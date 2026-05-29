@@ -15,14 +15,12 @@
         body{font-family:'Inter',sans-serif;background:var(--db);color:var(--tp);overflow-x:hidden;line-height:1.6}
         ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--dk)}::-webkit-scrollbar-thumb{background:var(--cd);border-radius:5px}::-webkit-scrollbar-thumb:hover{background:var(--cg)}
 
-        /* LOADER */
         #loader{position:fixed;inset:0;background:var(--db);z-index:99999;display:flex;align-items:center;justify-content:center}
         .loader-content{text-align:center}
         .loader-bar{width:clamp(150px,60vw,200px);height:4px;background:var(--bd);border-radius:2px;overflow:hidden;margin-top:1rem}
         .loader-progress{width:0;height:100%;background:var(--cg);box-shadow:0 0 10px var(--cg);transition:width 0.3s;animation:loadingAnim 2s ease-in-out forwards}
         @keyframes loadingAnim{0%{width:0}100%{width:100%}}
 
-        /* GLITCH */
         .glitch{position:relative;color:var(--cg);text-shadow:0 0 10px rgba(0,240,255,.5)}
         .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
         .glitch::before{left:2px;text-shadow:-2px 0 #ff00ff;clip:rect(44px,450px,56px,0);animation:ga 5s infinite linear alternate-reverse}
@@ -30,20 +28,11 @@
         @keyframes ga{0%{clip:rect(30px,9999px,10px,0)}20%{clip:rect(80px,9999px,90px,0)}40%{clip:rect(10px,9999px,50px,0)}60%{clip:rect(40px,9999px,20px,0)}80%{clip:rect(70px,9999px,30px,0)}100%{clip:rect(20px,9999px,60px,0)}}
         @keyframes ga2{0%{clip:rect(10px,9999px,80px,0)}20%{clip:rect(50px,9999px,20px,0)}40%{clip:rect(90px,9999px,10px,0)}60%{clip:rect(30px,9999px,70px,0)}80%{clip:rect(60px,9999px,40px,0)}100%{clip:rect(20px,9999px,50px,0)}}
 
-        /* BG */
         .bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(0,240,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:-1}
         .bg-glow{position:fixed;width:600px;height:600px;background:radial-gradient(circle,rgba(0,240,255,.15) 0%,transparent 70%);pointer-events:none;z-index:-1;filter:blur(80px)}
         .glow-1{top:-200px;left:-200px}.glow-2{bottom:-200px;right:-200px}
-          .bg-noise {
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.04; /* Povećaj/smanji ovo ako hoćeš jači/slabiji šum */
-            z-index: -3; /* Najdublji sloj, da ne baguje blur na navigaciji */
-            pointer-events: none;
-        }
+        .bg-noise{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");opacity:.04;z-index:-3;pointer-events:none}
 
-        /* LANG PANEL */
         #langPanel{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:1rem}
         #langPanel.show{display:flex}
         .lp-box{background:linear-gradient(145deg,rgba(10,10,15,.98),rgba(15,15,25,.98));border:1px solid var(--bd);border-radius:24px;padding:clamp(2rem,5vw,3rem);max-width:460px;width:100%;text-align:center;position:relative;overflow:hidden;box-shadow:0 0 80px rgba(0,240,255,.1),0 30px 60px rgba(0,0,0,.5)}
@@ -61,77 +50,15 @@
         .lp-skip:hover{color:var(--cg)}
         @media(max-width:400px){.lp-btns{grid-template-columns:1fr}}
 
-        
-        /* ========== TOAST OBAVEŠTENJE ZA JEZIK ========== */
-.lang-toast {
-    position: fixed;
-    top: -150px; /* Sakriveno skroz gore van ekrana */
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 10, 10, 0.9);
-    border: 1px solid var(--cyan-glow);
-    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 10000; /* Stoji preko svega */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    text-align: center;
-}
+        .lang-toast{position:fixed;top:-150px;left:50%;transform:translateX(-50%);background:rgba(10,10,10,.9);border:1px solid var(--bd);box-shadow:0 10px 30px rgba(0,240,255,.15);color:#fff;padding:12px 24px;border-radius:16px;display:flex;align-items:center;gap:15px;z-index:10000;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:top 0.6s cubic-bezier(0.16,1,0.3,1);text-align:center}
+        .lang-toast.show{top:90px}
+        .toast-icon{font-size:1.5rem}
+        .toast-text{font-size:.85rem;font-weight:600;line-height:1.4;font-family:'Inter',sans-serif}
+        .toast-text small{color:var(--ts);font-size:.75rem;font-weight:400}
+        #close-toast{background:none;border:none;color:var(--ts);font-size:1.5rem;cursor:pointer;line-height:1;transition:color .3s}
+        #close-toast:hover{color:var(--cg)}
+        @media(max-width:600px){.lang-toast{width:90%;padding:10px 15px}.lang-toast.show{top:80px}}
 
-/* Klasa koja ga spušta dole u vidno polje */
-.lang-toast.show {
-    top: 90px; /* Spušta ga tačno ispod navigacije */
-}
-
-.toast-icon {
-    font-size: 1.5rem;
-}
-
-.toast-text {
-    font-size: 0.85rem;
-    font-weight: 600;
-    line-height: 1.4;
-    font-family: 'Inter', sans-serif;
-}
-
-.toast-text small {
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    font-weight: 400;
-}
-
-#close-toast {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.3s;
-}
-
-#close-toast:hover {
-    color: var(--cyan-glow);
-}
-
-/* Za telefone */
-@media (max-width: 600px) {
-    .lang-toast {
-        width: 90%;
-        padding: 10px 15px;
-    }
-    .lang-toast.show {
-        top: 80px; 
-    }
-}
-
-        /* CHATBOT */
         .cb-trigger{position:fixed;bottom:25px;left:25px;z-index:9500;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--cg),var(--cd));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(0,240,255,.4),0 8px 25px rgba(0,0,0,.4);transition:all .3s;color:var(--db);font-size:1.5rem}
         .cb-trigger:hover{transform:scale(1.1);box-shadow:0 0 50px rgba(0,240,255,.6)}
         .cb-trigger .ring{position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid var(--cg);animation:cbP 2s ease-in-out infinite;pointer-events:none}
@@ -139,17 +66,14 @@
 
         .cb-win{position:fixed;bottom:95px;left:25px;width:380px;max-width:calc(100vw - 50px);height:520px;max-height:calc(100vh - 140px);background:rgba(8,8,12,.97);backdrop-filter:blur(20px);border:1px solid var(--bd);border-radius:20px;z-index:9500;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6)}
         .cb-win.open{display:flex}
-
         .cb-head{padding:16px 18px;background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(0,240,255,.03));border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-shrink:0}
         .cb-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--cg),var(--cd));display:flex;align-items:center;justify-content:center;color:var(--db);font-size:1.1rem;font-weight:700;flex-shrink:0;position:relative}
         .cb-av .od{position:absolute;bottom:0;right:0;width:10px;height:10px;background:var(--sg);border-radius:50%;border:2px solid var(--db);box-shadow:0 0 8px var(--sg)}
         .cb-head-info{flex:1}.cb-head-info h3{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700}.cb-head-info p{font-size:.7rem;color:var(--sg);font-weight:500}
         .cb-x{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);background:transparent;color:var(--ts);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:1.1rem}
         .cb-x:hover{border-color:var(--sr);color:var(--sr);background:rgba(239,68,68,.1)}
-
         .cb-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
         .cb-body::-webkit-scrollbar{width:4px}.cb-body::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
-
         .cb-msg{max-width:85%;animation:msgIn .3s ease-out}
         @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
         .cb-msg.bot{align-self:flex-start}.cb-msg.user{align-self:flex-end}
@@ -157,23 +81,19 @@
         .cb-msg.bot .cb-bub{background:rgba(0,240,255,.08);border:1px solid rgba(0,240,255,.15);color:var(--tp);border-bottom-left-radius:4px}
         .cb-msg.user .cb-bub{background:var(--cg);color:var(--db);border-bottom-right-radius:4px;font-weight:500}
         .cb-time{font-size:.6rem;color:var(--ts);margin-top:4px;opacity:.6}.cb-msg.user .cb-time{text-align:right}
-
         .cb-typing{display:flex;gap:4px;padding:12px 16px;background:rgba(0,240,255,.08);border:1px solid rgba(0,240,255,.15);border-radius:16px;border-bottom-left-radius:4px;width:fit-content}
         .cb-typing span{width:7px;height:7px;border-radius:50%;background:var(--cg);animation:typeDot .6s ease-in-out infinite}
         .cb-typing span:nth-child(2){animation-delay:.15s}.cb-typing span:nth-child(3){animation-delay:.3s}
         @keyframes typeDot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-5px);opacity:1}}
-
         .cb-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;flex-shrink:0}
         .cb-qb{padding:7px 14px;border-radius:20px;border:1px solid var(--bd);background:rgba(0,240,255,.05);color:var(--cg);font-size:.75rem;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap;font-family:'Inter',sans-serif}
         .cb-qb:hover{background:var(--cg);color:var(--db);border-color:var(--cg);transform:translateY(-2px)}
-
         .cb-foot{padding:12px 16px;border-top:1px solid var(--bd);display:flex;gap:8px;flex-shrink:0;background:rgba(5,5,5,.5)}
         .cb-inp{flex:1;padding:10px 16px;border-radius:25px;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--tp);font-size:.85rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .3s}
         .cb-inp:focus{border-color:var(--cg)}.cb-inp::placeholder{color:var(--ts);opacity:.5}
         .cb-send{width:40px;height:40px;border-radius:50%;border:none;background:var(--cg);color:var(--db);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;font-size:1rem}
         .cb-send:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(0,240,255,.4)}
 
-        /* STATUS */
         .sw{position:fixed;bottom:25px;right:25px;z-index:9000;display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(5,5,5,.85);backdrop-filter:blur(12px);border:1px solid var(--bd);border-radius:99px;box-shadow:0 4px 20px rgba(0,0,0,.5);pointer-events:none}
         .sw .time{font-family:'Space Grotesk',monospace;font-weight:700;font-size:1.1rem;letter-spacing:1px}
         .sw .div{width:1px;height:16px;background:var(--bd)}
@@ -184,7 +104,6 @@
         .sw .msg.off{color:var(--sr)}.sw .msg.off .dot{background:var(--sr);box-shadow:0 0 8px var(--sr);animation:none}
         @keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 
-        /* NAV */
         nav{position:fixed;top:0;width:100%;padding:clamp(.8rem,2vw,1.5rem) clamp(1rem,5vw,5%);display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(5,5,5,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd)}
         .logo{font-family:'Space Grotesk',sans-serif;font-size:clamp(1rem,2vw,1.5rem);font-weight:700;color:var(--cg);text-decoration:none;display:flex;align-items:center;gap:.5rem}
         .logo i{width:clamp(1.2rem,2vw,1.5rem);height:clamp(1.2rem,2vw,1.5rem)}
@@ -196,7 +115,6 @@
         .cta-nav{background:transparent;border:2px solid var(--cg);color:var(--cg);padding:clamp(.5rem,1.5vw,.6rem) clamp(1rem,2vw,1.5rem);border-radius:50px;font-weight:600;transition:all .3s;text-decoration:none;box-shadow:0 0 20px rgba(0,240,255,.2);font-size:clamp(.75rem,1.5vw,.95rem)}
         .cta-nav:hover{background:var(--cg);color:var(--db);box-shadow:0 0 40px rgba(0,240,255,.6);transform:translateY(-2px)}
 
-        /* HERO */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(5rem,10vw,8rem) clamp(1rem,5vw,5%) clamp(2rem,5vw,4rem);position:relative;overflow:hidden;margin-top:3rem}
         .hero-content{max-width:1200px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
         .hero-text{position:relative;z-index:2}
@@ -241,7 +159,6 @@
         .mini-timeline{height:clamp(40px,8vw,64px);padding:clamp(.5rem,1vw,.75rem);border-radius:16px;background:rgba(0,0,0,.45);border:1px solid var(--bd);display:flex;align-items:center;gap:6px}
         .mini-block{height:28px;border-radius:7px;background:linear-gradient(90deg,var(--cd),var(--cg));flex:1}
 
-        /* SERVICES */
         .services{padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,5%);background:var(--dk)}
         .section-header{text-align:center;margin-bottom:clamp(2rem,5vw,4rem)}
         .section-tag{color:var(--cg);font-weight:600;text-transform:uppercase;letter-spacing:2px;font-size:clamp(.7rem,1.5vw,.9rem);margin-bottom:1rem;display:block}
@@ -259,7 +176,6 @@
         .software-tags{display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap}
         .tag{background:rgba(0,240,255,.1);color:var(--cg);padding:clamp(.2rem,.6vw,.3rem) clamp(.6rem,1vw,.8rem);border-radius:20px;font-size:clamp(.7rem,1.2vw,.85rem);border:1px solid var(--bd)}
 
-        /* PORTFOLIO */
         .portfolio{padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,5%);position:relative}
         .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(250px,80vw,300px),1fr));gap:clamp(1.5rem,3vw,2rem);max-width:1200px;margin:0 auto}
         .portfolio-item{position:relative;border-radius:clamp(12px,3vw,20px);overflow:hidden;aspect-ratio:9/16;background:var(--cb);border:1px solid var(--bd);cursor:pointer;transition:all .3s}
@@ -280,7 +196,38 @@
         .portfolio-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1rem,2.5vw,1.3rem);margin-bottom:.5rem;color:var(--cg)}
         .portfolio-meta{color:var(--ts);font-size:clamp(.75rem,1.5vw,.9rem)}
 
-        /* ABOUT */
+        /* ===== PROCESS SECTION ===== */
+        .process{padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,5%);background:var(--dk);position:relative;overflow:hidden}
+        .process::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(0,240,255,.04) 0%,transparent 70%);pointer-events:none}
+        .process-timeline{position:relative;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+        .process-timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--bd) 10%,var(--bd) 90%,transparent);transform:translateX(-50%)}
+        .process-step{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(1rem,3vw,2rem);padding:clamp(1rem,2vw,1.5rem) 0;position:relative}
+        .process-step.left .ps-card{grid-column:1;grid-row:1;text-align:right}
+        .process-step.left .ps-icon{grid-column:2;grid-row:1}
+        .process-step.left .ps-empty{grid-column:3;grid-row:1}
+        .process-step.right .ps-empty{grid-column:1;grid-row:1}
+        .process-step.right .ps-icon{grid-column:2;grid-row:1}
+        .process-step.right .ps-card{grid-column:3;grid-row:1}
+        .ps-card{background:var(--cb);border:1px solid var(--bd);border-radius:clamp(14px,3vw,20px);padding:clamp(1.2rem,2.5vw,1.8rem);transition:all .4s;position:relative;overflow:hidden}
+        .ps-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cg),transparent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+        .process-step:hover .ps-card{border-color:rgba(0,240,255,.5);box-shadow:0 0 30px rgba(0,240,255,.08);transform:translateY(-3px)}
+        .process-step:hover .ps-card::before{transform:scaleX(1)}
+        .ps-num{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--cg);opacity:.25;line-height:1;margin-bottom:.4rem;letter-spacing:-2px}
+        .ps-card h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(1rem,2vw,1.25rem);margin-bottom:.5rem;color:var(--tp)}
+        .ps-card p{color:var(--ts);font-size:clamp(.8rem,1.5vw,.95rem);line-height:1.7}
+        .ps-icon{width:clamp(50px,8vw,68px);height:clamp(50px,8vw,68px);border-radius:50%;background:linear-gradient(135deg,rgba(0,240,255,.15),rgba(0,240,255,.05));border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;color:var(--cg);font-size:clamp(1.1rem,2vw,1.4rem);flex-shrink:0;position:relative;z-index:1;transition:all .4s;box-shadow:0 0 0 6px var(--dk)}
+        .process-step:hover .ps-icon{border-color:var(--cg);background:rgba(0,240,255,.2);box-shadow:0 0 25px rgba(0,240,255,.3),0 0 0 6px var(--dk)}
+
+        @media(max-width:720px){
+          .process-timeline::before{left:28px}
+          .process-step{grid-template-columns:auto 1fr;gap:1rem}
+          .process-step.left .ps-card,.process-step.right .ps-card{grid-column:2;grid-row:1;text-align:left}
+          .process-step.left .ps-icon,.process-step.right .ps-icon{grid-column:1;grid-row:1}
+          .process-step.left .ps-empty,.process-step.right .ps-empty{display:none}
+          .ps-icon{box-shadow:0 0 0 6px var(--dk)}
+        }
+        /* ===== END PROCESS ===== */
+
         .about{padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,5%)}
         .about-content{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center}
         .about-image{position:relative;height:clamp(300px,60vw,500px);background:linear-gradient(135deg,rgba(0,240,255,.1),transparent);border-radius:clamp(12px,3vw,20px);border:2px solid var(--bd);overflow:hidden}
@@ -291,7 +238,6 @@
         .skills-list li{display:flex;align-items:center;gap:1rem;margin-bottom:clamp(.7rem,1.5vw,1rem);color:var(--ts);font-size:clamp(.85rem,1.8vw,1rem)}
         .skills-list li i{color:var(--cg);width:clamp(18px,3vw,22px);height:clamp(18px,3vw,22px);flex-shrink:0}
 
-        /* CONTACT */
         .contact{padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,5%);background:var(--dk);text-align:center}
         .contact-content{max-width:700px;margin:0 auto}
         .contact h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:1rem}
@@ -311,7 +257,6 @@
         footer{padding:clamp(1.2rem,2vw,2rem) clamp(1rem,5vw,5%);text-align:center;border-top:1px solid var(--bd);color:var(--ts);font-size:clamp(.8rem,1.5vw,.9rem)}
         footer span{color:var(--cg)}
 
-        /* RESPONSIVE */
         @media(max-width:968px){.hero-content{grid-template-columns:1fr;text-align:center}.hero-visual{order:-1}.hero-subtitle{margin-left:auto;margin-right:auto}.phone-mockup{transform:scale(.9)}.showcase-pill,.metric-card{transform:scale(.85)}.about-content{grid-template-columns:1fr}.nl{display:none}.portfolio-grid{grid-template-columns:repeat(auto-fit,minmax(clamp(200px,70vw,280px),1fr))}}
         @media(max-width:600px){nav{padding:.8rem clamp(.8rem,3vw,1rem)}.hero{padding:4rem clamp(.8rem,3vw,1rem) clamp(1.5rem,3vw,2rem);margin-top:2.5rem}.hero-buttons{flex-direction:column;width:100%}.btn-primary,.btn-secondary{width:100%;justify-content:center}.showcase-pill,.metric-card{display:none}.portfolio-grid{grid-template-columns:repeat(auto-fit,minmax(clamp(160px,60vw,220px),1fr));gap:clamp(.8rem,2vw,1rem)}.services-grid{grid-template-columns:1fr}.sw{bottom:15px;right:15px;padding:8px 12px;width:calc(100% - 30px);justify-content:space-between}.sw .time{font-size:.9rem}.sw .div{display:none}.lf{top:auto;bottom:80px;right:15px}.cb-trigger{bottom:75px;left:15px;width:52px;height:52px}.cb-win{bottom:138px;left:15px;width:calc(100vw - 30px);max-width:380px;height:400px}}
         @media(max-width:400px){.logo{font-size:clamp(.9rem,2vw,1.2rem)}.hero-text h1{font-size:clamp(1.5rem,4vw,2rem)}.phone-mockup{transform:scale(.75);margin:-30px 0}.contact-method{flex-direction:column;align-items:flex-start;gap:1rem}.contact-method-info{width:100%}.lp-btns{grid-template-columns:1fr}}
@@ -350,6 +295,53 @@
 <div class="portfolio-item" data-video="1y7v5o60Kj7qxv0mkam-okPURPrhY4pVt"><div class="portfolio-thumb"><div class="thumb-fallback"></div><img src="https://drive.google.com/thumbnail?id=1y7v5o60Kj7qxv0mkam-okPURPrhY4pVt&sz=w1000" alt="Video 6" class="video-thumb" onerror="this.style.display='none'"><div class="play-overlay"><div class="play-btn-large"><i data-lucide="play" style="fill:currentColor;margin-left:3px"></i></div></div><div class="video-frame"><iframe allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe><button class="close-video">×</button></div><div class="portfolio-overlay"><h3 class="portfolio-title">Projekat 6</h3><p class="portfolio-meta">Tap to play</p></div></div></div>
 </div></section>
 
+<!-- ===== PROCESS SECTION ===== -->
+<section class="process" id="proces">
+  <div class="section-header">
+    <span class="section-tag" data-i18n="proc.tag">Proces</span>
+    <h2 class="section-title" data-i18n="proc.title">Kako Funkcionišemo Zajedno</h2>
+    <p class="section-subtitle" data-i18n="proc.sub">Jednostavan proces od prve poruke do finalnog videa.</p>
+  </div>
+  <div class="process-timeline">
+    <div class="process-step left">
+      <div class="ps-card">
+        <div class="ps-num">01</div>
+        <h3 data-i18n="proc.s1t">Brief &amp; Dogovor</h3>
+        <p data-i18n="proc.s1d">Šalješ sirovi materijal, deliš viziju i ciljeve. Dogovaramo se o stilu, tonu i roku.</p>
+      </div>
+      <div class="ps-icon"><i class="fa-solid fa-envelope"></i></div>
+      <div class="ps-empty"></div>
+    </div>
+    <div class="process-step right">
+      <div class="ps-empty"></div>
+      <div class="ps-icon"><i class="fa-solid fa-film"></i></div>
+      <div class="ps-card">
+        <div class="ps-num">02</div>
+        <h3 data-i18n="proc.s2t">Kreativna Montaža</h3>
+        <p data-i18n="proc.s2d">Seckam, slažem, dodajem efekte, tranzicije, motion graphics — sve u Premiere Pro i After Effects.</p>
+      </div>
+    </div>
+    <div class="process-step left">
+      <div class="ps-card">
+        <div class="ps-num">03</div>
+        <h3 data-i18n="proc.s3t">Revizija &amp; Feedback</h3>
+        <p data-i18n="proc.s3d">Dobijaš prvu verziju za 24–48h. Revizije dok ne budeš 100% zadovoljan.</p>
+      </div>
+      <div class="ps-icon"><i class="fa-solid fa-layer-group"></i></div>
+      <div class="ps-empty"></div>
+    </div>
+    <div class="process-step right">
+      <div class="ps-empty"></div>
+      <div class="ps-icon"><i class="fa-solid fa-paper-plane"></i></div>
+      <div class="ps-card">
+        <div class="ps-num">04</div>
+        <h3 data-i18n="proc.s4t">Finalna Isporuka</h3>
+        <p data-i18n="proc.s4d">Optimizovan video za sve platforme, spreman za objavu. Pratim performanse i dajem predloge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="about" id="omeni"><div class="about-content"><div class="about-image"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--cg)"><i data-lucide="user" style="width:clamp(60px,12vw,80px);height:clamp(60px,12vw,80px);opacity:.5"></i><p style="margin-top:1rem;font-family:'Space Grotesk';font-size:clamp(.8rem,2vw,1.2rem)">PAVLE ĆIROVIĆ</p></div></div><div class="about-text"><span class="section-tag" data-i18n="about.tag">O Meni</span><h2 data-i18n="about.title">Video Editor sa Fokusom na Rezultate</h2><p data-i18n="about.p1">Zovem se Pavle i specijalizovan sam za editovanje short form videa koji se <strong style="color:var(--cg)">zarazno šire</strong> po društvenim mrežama.</p><p data-i18n="about.p2">Radim sa kreatorima, coach-evima i brendovima koji žele da podignu svoj sadržaj na viši nivo. Kombinujem tehničku preciznost Premiere Pro-a sa kreativnim mogućnostima After Effects-a da bih stvarao video sadržaj koji ne samo da izgleda profesionalno, već i <strong style="color:var(--cg)">konvertuje gledaoce u pratioce i potencijalne klijente</strong>.</p><ul class="skills-list"><li><i data-lucide="check-circle"></i><span data-i18n="about.s1">Brza isporuka (24-48h)</span></li><li><i data-lucide="check-circle"></i><span data-i18n="about.s2">Praćenje trendova i algoritama</span></li><li><i data-lucide="check-circle"></i><span data-i18n="about.s3">Sinhronizacija sa brend identitetom</span></li></ul></div></div></section>
 
 <section class="contact" id="kontakt"><div class="contact-content"><span class="section-tag" data-i18n="cnt.tag">Kontakt</span><h2 class="glitch" data-text="Javi mi se" data-i18n="cnt.title">Javi mi se</h2><p class="contact-text" data-i18n="cnt.desc">Za saradnju me kontaktiraj direktno putem WhatsApp-a, Vibera ili email-a.</p><div class="contact-methods"><a href="https://wa.me/381645053533" target="_blank" rel="noopener" class="contact-method"><div class="contact-method-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div><div class="contact-method-info"><span>WhatsApp</span><strong>+381 64 505 3533</strong></div></a><a href="viber://chat?number=%2B381645053533" class="contact-method"><div class="contact-method-icon viber"><i class="fa-brands fa-viber"></i></div><div class="contact-method-info"><span>Viber</span><strong>+381 64 505 3533</strong></div></a><a href="mailto:vy9paa.editing@gmail.com" class="contact-method"><div class="contact-method-icon email"><i class="fa-solid fa-envelope"></i></div><div class="contact-method-info"><span>Email</span><strong>vy9paa.editing@gmail.com</strong></div></a></div><div class="social-links"><a href="https://instagram.com/pavlecirovicc" class="social-link" target="_blank"><i class="fa-brands fa-instagram"></i></a><a class="social-link" target="_blank"><i class="fa-brands fa-tiktok"></i></a><a class="social-link" target="_blank"><i class="fa-brands fa-youtube"></i></a><a class="social-link" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a><a href="https://wa.me/381645053533" class="social-link" target="_blank"><i class="fa-brands fa-whatsapp"></i></a><a href="mailto:vy9paa.editing@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a></div></div></section>
@@ -359,7 +351,7 @@
 <div class="sw"><div class="time" id="clock">00:00:00</div><div class="div"></div><div class="info"><div class="lbl">Central European Time</div><div class="msg" id="sMsg"><span class="dot"></span><span id="sTxt">Online — Pošalji mi poruku ✉️</span></div></div></div>
 
 <script>
-var TR={sr:{"ai.status":"Uvek spreman za odgovor ✨","nav.home":"Početna","nav.services":"Usluge","nav.portfolio":"Portfolio","nav.about":"O Meni","nav.cta":"Započni Projekat","hero.title":"VIDEO EDITOR","hero.sub":"Premiere Pro & After Effects Specijalista","hero.desc":"Transformišem sirovi snimak u zarazni viralni sadržaj koji stopira skrolovanje. Specijalizovan za Reels, Shorts i TikTok za kreatore i coacheve.","hero.cta1":"Pogledaj Radove","hero.cta2":"Kontakt","hero.pill1":"Aktivna edit sesija","hero.pill2":"Jak hook u prve 3 sekunde","hero.m1l":"FOKUS MONTAŽE","hero.m1v":"Zadržavanje pažnje","hero.m1n":"Kratki rezovi, zumovi i dinamičan tempo","hero.m2l":"ISPORUKA","hero.m2n":"Brza isporuka + jasna komunikacija","hero.kicker":"SHORT FORM EDIT","hero.stitle":"Zaustavi skroll. Zadrži pažnju.","hero.ssub":"Hook, titlovi i motion detalji koji drže pogled do kraja.","hero.c1":"Prve 3 sekunde odlučuju sve.","hero.c2":"Bold titlovi + emphasis reči","hero.c3":"Sound design + čiste tranzicije","srv.tag":"Šta Radim?","srv.title":"Usluge Video Produkcije","srv.sub":"Specijalizovane usluge montaže fokusirane na maksimalan engagement i zadržavanje pažnje publike","srv.c1t":"Short Form Video","srv.c1d":"Viralni Reels, TikTok i YouTube Shorts sa dinamičkim rezovima, subtitrima i efektima koji hvataju pažnju u prvih 3 sekunde.","srv.c2t":"Content za Kreatore","srv.c2d":"Montaža podcasta, izdvajanje klipova, dodavanje animiranih grafika i vizuala koji pojačavaju lični brend.","srv.c3t":"Video za Coacheve","srv.c3d":"Profesionalna obrada edukativnog sadržaja, kurs video lekcija i promotivnih spotova za online biznise.","port.tag":"Portfolio","port.title":"Izdvojeni Radovi","port.sub":"Pregled najboljih projekata iz različitih niša","port.tap":"Tap to play","about.tag":"O Meni","about.title":"Video Editor sa Fokusom na Rezultate","about.p1":"Zovem se Pavle i specijalizovan sam za editovanje short form videa koji se <strong style='color:var(--cg)'>zarazno šire</strong> po društvenim mrežama.","about.p2":"Radim sa kreatorima, coach-evima i brendovima koji žele da podignu svoj sadržaj na viši nivo. Kombinujem tehničku preciznost Premiere Pro-a sa kreativnim mogućnostima After Effects-a da bih stvarao video sadržaj koji ne samo da izgleda profesionalno, već i <strong style='color:var(--cg)'>konvertuje gledaoce u pratioce i potencijalne klijente</strong>.","about.s1":"Brza isporuka (24-48h)","about.s2":"Praćenje trendova i algoritama","about.s3":"Sinhronizacija sa brend identitetom","cnt.tag":"Kontakt","cnt.title":"Javi mi se","cnt.desc":"Za saradnju me kontaktiraj direktno putem WhatsApp-a, Vibera ili email-a.","st.on":"Online — Pošalji mi poruku ✉️","st.off":"Currently Offline — Javite se sutra 🌙"},en:{"ai.status":"Always ready to help ✨","nav.home":"Home","nav.services":"Services","nav.portfolio":"Portfolio","nav.about":"About","nav.cta":"Start a Project","hero.title":"VIDEO EDITOR","hero.sub":"Premiere Pro & After Effects Specialist","hero.desc":"I transform raw footage into addictive viral content that stops the scroll. Specialized in Reels, Shorts and TikTok for creators and coaches.","hero.cta1":"View My Work","hero.cta2":"Contact","hero.pill1":"Active editing session","hero.pill2":"Strong hook in first 3 seconds","hero.m1l":"EDITING FOCUS","hero.m1v":"Attention Retention","hero.m1n":"Short cuts, zooms & dynamic tempo","hero.m2l":"DELIVERY","hero.m2n":"Fast delivery + clear communication","hero.kicker":"SHORT FORM EDIT","hero.stitle":"Stop the scroll. Keep attention.","hero.ssub":"Hook, subtitles & motion details that keep viewers watching till the end.","hero.c1":"The first 3 seconds decide everything.","hero.c2":"Bold subtitles + word emphasis","hero.c3":"Sound design + clean transitions","srv.tag":"What I Do?","srv.title":"Video Production Services","srv.sub":"Specialized editing services focused on maximum engagement and audience retention","srv.c1t":"Short Form Video","srv.c1d":"Viral Reels, TikTok and YouTube Shorts with dynamic cuts, subtitles and effects that capture attention in the first 3 seconds.","srv.c2t":"Content for Creators","srv.c2d":"Podcast editing, clip extraction, animated graphics and visuals that boost personal branding.","srv.c3t":"Video for Coaches","srv.c3d":"Professional editing of educational content, course video lessons and promotional spots for online businesses.","port.tag":"Portfolio","port.title":"Featured Work","port.sub":"A selection of best projects across different niches","port.tap":"Tap to play","about.tag":"About Me","about.title":"Video Editor Focused on Results","about.p1":"My name is Pavle and I specialize in editing short form videos that <strong style='color:var(--cg)'>go viral</strong> across social media.","about.p2":"I work with creators, coaches and brands who want to elevate their content to the next level. I combine technical precision of Premiere Pro with creative capabilities of After Effects to create video content that not only looks professional but also <strong style='color:var(--cg)'>converts viewers into followers and potential clients</strong>.","about.s1":"Fast delivery (24-48h)","about.s2":"Trends & algorithm tracking","about.s3":"Brand identity synchronization","cnt.tag":"Contact","cnt.title":"Get in Touch","cnt.desc":"For collaboration, contact me directly via WhatsApp, Viber or email.","st.on":"Online — Send Me a Message ✉️","st.off":"Currently Offline — Reach out tomorrow 🌙"}};
+var TR={sr:{"ai.status":"Uvek spreman za odgovor ✨","nav.home":"Početna","nav.services":"Usluge","nav.portfolio":"Portfolio","nav.about":"O Meni","nav.cta":"Započni Projekat","hero.title":"VIDEO EDITOR","hero.sub":"Premiere Pro & After Effects Specijalista","hero.desc":"Transformišem sirovi snimak u zarazni viralni sadržaj koji stopira skrolovanje. Specijalizovan za Reels, Shorts i TikTok za kreatore i coacheve.","hero.cta1":"Pogledaj Radove","hero.cta2":"Kontakt","hero.pill1":"Aktivna edit sesija","hero.pill2":"Jak hook u prve 3 sekunde","hero.m1l":"FOKUS MONTAŽE","hero.m1v":"Zadržavanje pažnje","hero.m1n":"Kratki rezovi, zumovi i dinamičan tempo","hero.m2l":"ISPORUKA","hero.m2n":"Brza isporuka + jasna komunikacija","hero.kicker":"SHORT FORM EDIT","hero.stitle":"Zaustavi skroll. Zadrži pažnju.","hero.ssub":"Hook, titlovi i motion detalji koji drže pogled do kraja.","hero.c1":"Prve 3 sekunde odlučuju sve.","hero.c2":"Bold titlovi + emphasis reči","hero.c3":"Sound design + čiste tranzicije","srv.tag":"Šta Radim?","srv.title":"Usluge Video Produkcije","srv.sub":"Specijalizovane usluge montaže fokusirane na maksimalan engagement i zadržavanje pažnje publike","srv.c1t":"Short Form Video","srv.c1d":"Viralni Reels, TikTok i YouTube Shorts sa dinamičkim rezovima, subtitrima i efektima koji hvataju pažnju u prvih 3 sekunde.","srv.c2t":"Content za Kreatore","srv.c2d":"Montaža podcasta, izdvajanje klipova, dodavanje animiranih grafika i vizuala koji pojačavaju lični brend.","srv.c3t":"Video za Coacheve","srv.c3d":"Profesionalna obrada edukativnog sadržaja, kurs video lekcija i promotivnih spotova za online biznise.","port.tag":"Portfolio","port.title":"Izdvojeni Radovi","port.sub":"Pregled najboljih projekata iz različitih niša","port.tap":"Tap to play","proc.tag":"Proces","proc.title":"Kako Funkcionišemo Zajedno","proc.sub":"Jednostavan proces od prve poruke do finalnog videa.","proc.s1t":"Brief & Dogovor","proc.s1d":"Šalješ sirovi materijal, deliš viziju i ciljeve. Dogovaramo se o stilu, tonu i roku.","proc.s2t":"Kreativna Montaža","proc.s2d":"Seckam, slažem, dodajem efekte, tranzicije, motion graphics — sve u Premiere Pro i After Effects.","proc.s3t":"Revizija & Feedback","proc.s3d":"Dobijaš prvu verziju za 24–48h. Revizije dok ne budeš 100% zadovoljan.","proc.s4t":"Finalna Isporuka","proc.s4d":"Optimizovan video za sve platforme, spreman za objavu. Pratim performanse i dajem predloge.","about.tag":"O Meni","about.title":"Video Editor sa Fokusom na Rezultate","about.p1":"Zovem se Pavle i specijalizovan sam za editovanje short form videa koji se <strong style='color:var(--cg)'>zarazno šire</strong> po društvenim mrežama.","about.p2":"Radim sa kreatorima, coach-evima i brendovima koji žele da podignu svoj sadržaj na viši nivo. Kombinujem tehničku preciznost Premiere Pro-a sa kreativnim mogućnostima After Effects-a da bih stvarao video sadržaj koji ne samo da izgleda profesionalno, već i <strong style='color:var(--cg)'>konvertuje gledaoce u pratioce i potencijalne klijente</strong>.","about.s1":"Brza isporuka (24-48h)","about.s2":"Praćenje trendova i algoritama","about.s3":"Sinhronizacija sa brend identitetom","cnt.tag":"Kontakt","cnt.title":"Javi mi se","cnt.desc":"Za saradnju me kontaktiraj direktno putem WhatsApp-a, Vibera ili email-a.","st.on":"Online — Pošalji mi poruku ✉️","st.off":"Currently Offline — Javite se sutra 🌙"},en:{"ai.status":"Always ready to help ✨","nav.home":"Home","nav.services":"Services","nav.portfolio":"Portfolio","nav.about":"About","nav.cta":"Start a Project","hero.title":"VIDEO EDITOR","hero.sub":"Premiere Pro & After Effects Specialist","hero.desc":"I transform raw footage into addictive viral content that stops the scroll. Specialized in Reels, Shorts and TikTok for creators and coaches.","hero.cta1":"View My Work","hero.cta2":"Contact","hero.pill1":"Active editing session","hero.pill2":"Strong hook in first 3 seconds","hero.m1l":"EDITING FOCUS","hero.m1v":"Attention Retention","hero.m1n":"Short cuts, zooms & dynamic tempo","hero.m2l":"DELIVERY","hero.m2n":"Fast delivery + clear communication","hero.kicker":"SHORT FORM EDIT","hero.stitle":"Stop the scroll. Keep attention.","hero.ssub":"Hook, subtitles & motion details that keep viewers watching till the end.","hero.c1":"The first 3 seconds decide everything.","hero.c2":"Bold subtitles + word emphasis","hero.c3":"Sound design + clean transitions","srv.tag":"What I Do?","srv.title":"Video Production Services","srv.sub":"Specialized editing services focused on maximum engagement and audience retention","srv.c1t":"Short Form Video","srv.c1d":"Viral Reels, TikTok and YouTube Shorts with dynamic cuts, subtitles and effects that capture attention in the first 3 seconds.","srv.c2t":"Content for Creators","srv.c2d":"Podcast editing, clip extraction, animated graphics and visuals that boost personal branding.","srv.c3t":"Video for Coaches","srv.c3d":"Professional editing of educational content, course video lessons and promotional spots for online businesses.","port.tag":"Portfolio","port.title":"Featured Work","port.sub":"A selection of best projects across different niches","port.tap":"Tap to play","proc.tag":"Process","proc.title":"How We Work Together","proc.sub":"A simple process from first message to final video.","proc.s1t":"Brief & Agreement","proc.s1d":"You send raw material, share your vision and goals. We agree on style, tone and deadline.","proc.s2t":"Creative Editing","proc.s2d":"Cutting, arranging, adding effects, transitions, motion graphics — all in Premiere Pro and After Effects.","proc.s3t":"Revision & Feedback","proc.s3d":"You get the first version in 24–48h. Revisions until you're 100% satisfied.","proc.s4t":"Final Delivery","proc.s4d":"Optimized video for all platforms, ready to publish. I track performance and give suggestions.","about.tag":"About Me","about.title":"Video Editor Focused on Results","about.p1":"My name is Pavle and I specialize in editing short form videos that <strong style='color:var(--cg)'>go viral</strong> across social media.","about.p2":"I work with creators, coaches and brands who want to elevate their content to the next level. I combine technical precision of Premiere Pro with creative capabilities of After Effects to create video content that not only looks professional but also <strong style='color:var(--cg)'>converts viewers into followers and potential clients</strong>.","about.s1":"Fast delivery (24-48h)","about.s2":"Trends & algorithm tracking","about.s3":"Brand identity synchronization","cnt.tag":"Contact","cnt.title":"Get in Touch","cnt.desc":"For collaboration, contact me directly via WhatsApp, Viber or email.","st.on":"Online — Send Me a Message ✉️","st.off":"Currently Offline — Reach out tomorrow 🌙"}};
 
 var curLang=localStorage.getItem('vl')||'sr';
 function applyLang(l){curLang=l;localStorage.setItem('vl',l);document.documentElement.lang=l;
@@ -383,7 +375,8 @@ if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){gsap.registerP
 gsap.from(".hero-text > *",{y:50,opacity:0,duration:1,stagger:0.15,ease:"power3.out"});
 gsap.from(".video-preview",{x:50,opacity:0,duration:1.2,delay:0.3,ease:"power3.out"});
 gsap.from(".about-image",{scrollTrigger:{trigger:".about-content",start:"top 80%",once:true},x:-50,opacity:0,duration:1,ease:"power3.out"});
-gsap.from(".about-text",{scrollTrigger:{trigger:".about-content",start:"top 80%",once:true},x:50,opacity:0,duration:1,delay:0.2,ease:"power3.out"});}}
+gsap.from(".about-text",{scrollTrigger:{trigger:".about-content",start:"top 80%",once:true},x:50,opacity:0,duration:1,delay:0.2,ease:"power3.out"});
+gsap.from(".process-step",{scrollTrigger:{trigger:".process-timeline",start:"top 80%",once:true},y:40,opacity:0,duration:.8,stagger:.2,ease:"power3.out"});}}
 
 applyLang(curLang);
 
@@ -395,7 +388,6 @@ else{startGSAP();}
 if(typeof lucide!=='undefined')lucide.createIcons();},2200);
 updateStatus();setInterval(updateStatus,1000);});
 
-/* CHATBOT */
 var chatOpen=false,chatInited=false;
 var CR={sr:{greeting:"Zdravo! 👋 Ja sam AI asistent vy9paa.editing. Kako ti mogu pomoći?",services:"Montaža short form videa — Reels, TikTok, YouTube Shorts. Podcast montaža, motion graphics, titlovi. Premiere Pro i After Effects. 💻",pricing:"Cene: €20-50 po videu za short form. Za tačnu ponudu WhatsApp ili email! 💰",turnaround:"Isporuka: 24-48h. Hitno mogu i brže! ⚡",contact:"WhatsApp: +381 64 505 3533 📱, Viber: isti broj, email: vy9paa.editing@gmail.com",portfolio:"Pogledaj portfolio gore na sajtu! 6 projekata. 🎬",reels:"Reels specijalnost! 🔥 Dinamični rezovi, bold titlovi, hook u prve 3 sekunde.",tiktok:"TikTok editing! 🎵 Brze tranzicije, trending zvukovi, hook koji zadržava pažnju.",coaching:"Iskustvo sa coach-evima. Kursevi, lekcije, promo spotovi. 🎯",brand:"Prilagođavanje brend identitetu — boje, fontovi, stil. 🎨",revision:"Revizije uključene. 2-3 su dovoljne. ✅",payment:"Banka, PayPal, crypto. 💳",software:"Premiere Pro, After Effects, DaVinci Resolve. 🖥️",default:"Zanimljivo! 🤔 Kontaktiraj me: WhatsApp +381 64 505 3533 ili vy9paa.editing@gmail.com"},en:{greeting:"Hey! 👋 I'm the vy9paa.editing AI assistant. How can I help?",services:"Short form video editing — Reels, TikTok, YouTube Shorts. Podcast editing, motion graphics, subtitles. Premiere Pro & After Effects. 💻",pricing:"Pricing: €20-50 per video for short form. For exact quote WhatsApp or email! 💰",turnaround:"Delivery: 24-48h. Urgent projects even faster! ⚡",contact:"WhatsApp: +381 64 505 3533 📱, Viber: same number, email: vy9paa.editing@gmail.com",portfolio:"Check the portfolio above! 6 projects. 🎬",reels:"Reels specialty! 🔥 Dynamic cuts, bold subtitles, first 3 second hooks.",tiktok:"TikTok editing! 🎵 Fast transitions, trending sounds, attention hooks.",coaching:"Experience with coaches. Courses, lessons, promo spots. 🎯",brand:"Brand identity matching — colors, fonts, style. 🎨",revision:"Revisions included. 2-3 usually enough. ✅",payment:"Bank, PayPal, crypto accepted. 💳",software:"Premiere Pro, After Effects, DaVinci Resolve. 🖥️",default:"Great question! 🤔 Contact me: WhatsApp +381 64 505 3533 or vy9paa.editing@gmail.com"}};
 var QK={sr:["Usluge","Cene","Rokovi","Kontakt","Portfolio"],en:["Services","Pricing","Turnaround","Contact","Portfolio"]};
@@ -408,38 +400,28 @@ function removeTyping(){var e=document.getElementById('typing');if(e)e.remove();
 function sendMsg(){var inp=document.getElementById('cbInp'),t=inp.value.trim();if(!t)return;addMsg(t,'user');inp.value='';document.getElementById('cbQuick').innerHTML='';showTyping();setTimeout(function(){removeTyping();addMsg(CR[curLang][matchKw(t)]||CR[curLang].default,'bot');setTimeout(function(){var q=document.getElementById('cbQuick');q.innerHTML='';QK[curLang].forEach(function(qt){var b=document.createElement('button');b.className='cb-qb';b.textContent=qt;b.onclick=function(){document.getElementById('cbInp').value=qt;sendMsg();};q.appendChild(b);});},300);},800+Math.random()*1200);}
 function toggleChat(){chatOpen=!chatOpen;document.getElementById('cbWin').classList.toggle('open',chatOpen);if(chatOpen&&!chatInited)initChat();}
 function initChat(){document.getElementById('cbBody').innerHTML='';showTyping();setTimeout(function(){removeTyping();addMsg(CR[curLang].greeting,'bot');var q=document.getElementById('cbQuick');q.innerHTML='';QK[curLang].forEach(function(qt){var b=document.createElement('button');b.className='cb-qb';b.textContent=qt;b.onclick=function(){document.getElementById('cbInp').value=qt;sendMsg();};q.appendChild(b);});chatInited=true;},1000);}
-// ========== LOGIKA ZA TOAST OBAVEŠTENJE ==========
+
 window.addEventListener('load', () => {
-    
-    // Čekamo 3000ms (3 sekunde) da loading screen potpuno nestane
     setTimeout(() => {
         const toast = document.getElementById('lang-toast');
         const closeToast = document.getElementById('close-toast');
-        
-        // Proveri da li smo mu već prikazali ovo danas (da ga ne smaramo svaki put)
         if (toast && !sessionStorage.getItem('lang-notified')) {
-            
-            // Prikaži toast (dodaje CSS klasu koja ga spušta dole)
             toast.classList.add('show');
-            
-            // Sakrij ga automatski nakon 7 sekundi
             const hideTimeout = setTimeout(() => {
                 toast.classList.remove('show');
                 sessionStorage.setItem('lang-notified', 'true');
             }, 7000);
-
-            // Ako korisnik sam klikne na X da ga zatvori ranije
             if (closeToast) {
                 closeToast.addEventListener('click', () => {
                     toast.classList.remove('show');
                     sessionStorage.setItem('lang-notified', 'true');
-                    clearTimeout(hideTimeout); // Zaustavi automatsko sklanjanje jer je vec sklonio
+                    clearTimeout(hideTimeout);
                 });
             }
         }
-    }, 3000); 
+    }, 3000);
 });
-/* PORTFOLIO */
+
 var pItems=document.querySelectorAll('.portfolio-item');
 function closeAll(){pItems.forEach(function(it){var f=it.querySelector('.video-frame'),ifr=f.querySelector('iframe');ifr.src='';f.style.display='none';var t=it.querySelector('.video-thumb');if(t)t.style.display='block';it.querySelector('.play-overlay').style.display='flex';it.querySelector('.portfolio-overlay').style.opacity='1';});}
 pItems.forEach(function(item){var fr=item.querySelector('.video-frame'),ifr=fr.querySelector('iframe'),vid=item.getAttribute('data-video');item.addEventListener('click',function(e){if(e.target.closest('.close-video'))return;if(fr.style.display!=='block'){closeAll();ifr.src='https://drive.google.com/file/d/'+vid+'/preview';fr.style.display='block';var t=item.querySelector('.video-thumb');if(t)t.style.display='none';item.querySelector('.play-overlay').style.display='none';item.querySelector('.portfolio-overlay').style.opacity='0';}});item.querySelector('.close-video').addEventListener('click',function(e){e.stopPropagation();ifr.src='';fr.style.display='none';var t=item.querySelector('.video-thumb');if(t)t.style.display='block';item.querySelector('.play-overlay').style.display='flex';item.querySelector('.portfolio-overlay').style.opacity='1';});});
@@ -448,13 +430,9 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
 window.addEventListener('scroll',function(){document.querySelector('nav').style.background=window.scrollY>50?'rgba(5,5,5,.95)':'rgba(5,5,5,.8)';});
 document.addEventListener('mousemove',function(e){var mx=e.clientX/innerWidth-.5,my=e.clientY/innerHeight-.5;if(typeof gsap!=='undefined'){gsap.to('.glow-1',{x:mx*50,y:my*50,duration:1});gsap.to('.glow-2',{x:-mx*50,y:-my*50,duration:1});}});
 </script>
-<!-- Obaveštenje za jezik (Pojavljuje se samo jednom) -->
 <div id="lang-toast" class="lang-toast">
     <span class="toast-icon">🌍</span>
-    <span class="toast-text">
-        Izaberite jezik u donjem levom uglu.<br>
-        <small>Choose your language in the bottom left.</small>
-    </span>
+    <span class="toast-text">Izaberite jezik u donjem levom uglu.<br><small>Choose your language in the bottom left.</small></span>
     <button id="close-toast" aria-label="Close">&times;</button>
 </div>
 </body>
